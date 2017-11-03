@@ -1,0 +1,19 @@
+{
+  "name": "play-with-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yogomi/play-with-react.git"
+  },
+  "author": "Makoto Yano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yogomi/play-with-react/issues"
+  },
+  "homepage": "https://github.com/yogomi/play-with-react#readme"
+}
