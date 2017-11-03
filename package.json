@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/yogomi/play-with-react/issues"
   },
-  "homepage": "https://github.com/yogomi/play-with-react#readme"
+  "homepage": "https://github.com/yogomi/play-with-react#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "webpack": "^3.8.1",
+    "webpack-stream": "^4.0.0"
+  }
 }
