@@ -1,5 +1,6 @@
 module.exports = {
   entry: "./src/main.jsx",
+  mode: "development",
   output: {
     filename: "build/bundle.js"
   },
@@ -11,8 +12,8 @@ module.exports = {
        exclude: /node_modules/,
        options: {
          presets: [
-           ["env", {"modules": false}],
-           "react",
+           ["@babel/preset-env", {"modules": false}],
+           "@babel/preset-react",
          ]
        }
      },
