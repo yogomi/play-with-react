@@ -2,7 +2,7 @@ module.exports = {
   entry: "./src/main.jsx",
   mode: "development",
   output: {
-    filename: "build/bundle.js"
+    filename: "bundle.js"
   },
   module: {
    rules: [
