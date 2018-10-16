@@ -12,7 +12,6 @@ gulp.task('watch', ['build'], () => {
 });
 
 gulp.task('build', () => {
-  console.log('aaaa;');
   return webpackStream(webpack_config, webpack)
     .on('error', function handleError() {
       this.emit('end');
