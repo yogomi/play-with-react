@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 
 import * as d3 from 'd3';
 
-class D3Graph extends React.Component {
+class NetworkGraph extends React.Component {
   constructor(props) {
     super(props);
     this.createGraph = this.createGraph.bind(this);
@@ -21,8 +21,9 @@ class D3Graph extends React.Component {
 
   createGraph() {
     let width = 500;
-    let height = 500;
-    let margin = 50;
+    let height = 300;
+    let margin = 20;
+
     let x = d3.scaleLinear()
       .domain([0, 10])
       .range([margin, width - margin]);
@@ -30,31 +31,33 @@ class D3Graph extends React.Component {
       .domain([0, 10])
       .range([height - margin, margin]);
 
-    // d3.range(10).map(function(i){
-    //   return {x: i, y: Math.sin(i) + 5};
-    // });
-
     let line = d3.line()
       .x((d) => {return x(d.x);})
       .y((d) => {return y(d.y);});
+
+    let area = d3.area()
+      .x((d) => {return x(d.x);})
+      .y0(height - margin)
+      .y1((d) => {return y(d.y);});
+
 
     var svg = d3.select(this.node);
     svg.attr("height", height)
       .attr("width", width);
 
-    svg.selectAll("path")
+    svg.append('path')
       .data(this.props.data)
-      .enter()
-      .append("path")
+      .attr("class", "area")
+      .attr("d", function(d) {
+        return area(d);
+      });
+
+    svg.append('path')
+      .data(this.props.data)
       .attr("class", "line")
       .attr("d", function(d) {
         return line(d);
       });
-
-    svg.append('circle')
-      .attr('cx', 120)
-      .attr('cy', 200)
-      .attr('r', 10);
 
     function xStart(){ return margin;}
     function yStart(){ return height - margin;}
@@ -105,9 +108,17 @@ class App extends React.Component {
       {x: 4, y: 4},
       {x: 5, y: 1},
     ]];
+    const network_data = [[
+      {x: 0, y: 1.23},
+      {x: 1, y: 2.2},
+      {x: 2, y: 1.83},
+      {x: 3, y: 1.23},
+      {x: 4, y: 2.31},
+      {x: 5, y: 2.12},
+    ]];
     return (
       <div>
-        <D3Graph data={data} />
+        <NetworkGraph data={network_data}/>
       </div>
     );
   }
