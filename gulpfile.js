@@ -7,7 +7,7 @@ const browserSync = require('browser-sync');
 // webpackの設定ファイルの読み込み
 const webpack_config = require("./webpack.config");
 
-gulp.task('watch', ['build'], () => {
+gulp.task('watch', () => {
   gulp.watch(['src/**/*.jsx', 'scss/**/*.scss'], ['build']);
 });
 
@@ -20,7 +20,7 @@ gulp.task('build', () => {
     .pipe(gulp.dest('www/js'));
 });
 
-gulp.task('browsersync', function() {
+gulp.task('browsersync', () => {
   browserSync.init({
     files: ['www/**/*.*'], // BrowserSyncにまかせるファイル群
     proxy: 'http://localhost:32002',  // express の動作するポートにプロキシ
@@ -28,13 +28,6 @@ gulp.task('browsersync', function() {
     open: false,  // ブラウザ open しない
     reloadDelay: 2000
   });
-});
-
-function reload() {
-  browserSync.reload({ stream: false });
-}
-
-gulp.task('serve', ['browsersync'], function () {
   nodemon({
     script: './www.js',
     ext: 'js html css',
@@ -59,3 +52,9 @@ gulp.task('serve', ['browsersync'], function () {
     });
   });
 });
+
+function reload() {
+  browserSync.reload({ stream: false });
+}
+
+gulp.task('serve', gulp.series('browsersync'));
